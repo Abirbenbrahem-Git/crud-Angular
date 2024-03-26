@@ -1,0 +1,40 @@
+<p-dialog header="Ajouter offre" [(visible)]="displayAddModal" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false"  (onHide)="closeModal()"> 
+  <form [formGroup]="offreForm"  class="offre-form">
+    
+    <div class="field">
+      <label class="block" for="title">Titre *</label>
+      <input type="text" pInputText id="titre" formControlName="titre" required />
+      <small class="p-error block" *ngIf="
+          offreForm.controls['titre'].invalid &&
+          offreForm.controls['titre'].dirty">Field is required</small>
+    </div> 
+    
+    <div class="field">
+      <label class="block" for="description">Description *</label>
+      <input type="text" pInputText id="description" formControlName="description" />
+      <small class="p-error block" *ngIf="
+          offreForm.controls['description'].invalid &&
+          offreForm.controls['description'].dirty">Field is required</small>
+    </div> 
+
+    <div class="field">
+      <label class="block">Détail</label>
+      <textarea pInputTextarea formControlName="detail"></textarea>
+    </div>
+
+    <div class="field">
+      <label class="block" for="salaire">Salaire *</label>
+      <p-inputNumber placeholder="Salaire" id="salaire" formControlName="salaire" class="block"></p-inputNumber>
+      <small class="p-error block" *ngIf="
+          offreForm.controls['salaire'].invalid &&
+          offreForm.controls['salaire'].dirty">Field is required</small>
+    </div>  
+    
+  </form>
+
+    <ng-template pTemplate="footer">
+      <p-button (click)="closeModal()" label="Annuler" styleClass="p-button-text"></p-button>
+      <p-button type="submit" (click)="addOffre()" label="Ajouter"  [disabled]="offreForm.invalid"></p-button>
+    </ng-template>
+</p-dialog>
+ 
